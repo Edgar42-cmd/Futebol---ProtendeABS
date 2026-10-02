@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Futebol Protende ABS</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f4f7f5;color:#17201b;font-family:Arial,Helvetica,sans-serif}
+header{background:linear-gradient(135deg,#126b3e,#1b9a59);color:#fff;padding:30px 18px}
+.container{max-width:1100px;margin:auto}.tag{font-size:12px;font-weight:bold;letter-spacing:1px;opacity:.85;text-transform:uppercase}
+h1{margin:7px 0;font-size:30px}header p{margin:0;opacity:.9}
+main{padding:25px 18px 50px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+.card{background:#fff;border:1px solid #dfe7e2;border-radius:16px;padding:18px;box-shadow:0 7px 22px #0000000d}
+.stat span{font-size:13px;color:#68746d}.stat strong{display:block;font-size:25px;margin-top:5px}
+h2{font-size:19px;margin:0 0 14px}.section{margin-top:18px}
+.info{display:flex;gap:9px;flex-wrap:wrap}.pill{padding:9px 12px;border-radius:999px;background:#eef7f1;border:1px solid #d8eadf;font-size:14px}
+.form{display:grid;grid-template-columns:1.5fr 1fr 1fr auto;gap:10px;align-items:end}
+label{display:block;font-size:12px;color:#68746d;font-weight:bold;margin-bottom:6px}
+input,select{width:100%;padding:12px;border:1px solid #ccd7d0;border-radius:10px;font:inherit;background:#fff}
+button{border:0;border-radius:10px;padding:12px 15px;font:inherit;font-weight:bold;cursor:pointer}
+.primary{background:#16834b;color:#fff}.primary:hover{background:#0f6b3c}.secondary{background:#edf2ee;color:#26322b}.danger{background:#fff0f0;color:#b92e2e}
+.status{display:inline-block;padding:5px 8px;border-radius:999px;font-size:12px;font-weight:bold}.ok{background:#e5f6ec;color:#126b3e}.pending{background:#fff3d5;color:#8a6100}
+.list{display:grid;gap:10px}.person{border:1px solid #dfe7e2;border-radius:13px;padding:14px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.person-main{min-width:0}.person-name{font-weight:bold;font-size:16px}.person-detail{font-size:13px;color:#68746d;margin-top:4px}.person-actions{display:flex;gap:7px;flex-wrap:wrap}
+.empty{padding:30px;text-align:center;color:#68746d;border:1px dashed #ccd7d0;border-radius:12px}
+.cost-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}.cost{background:#f8faf8;border:1px solid #e1e8e3;border-radius:12px;padding:14px}.cost span{display:block;color:#68746d;font-size:13px}.cost strong{font-size:22px;display:block;margin-top:4px}
+.note{font-size:12px;color:#68746d;margin:10px 0 0}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}.toolbar input{max-width:320px}
+@media(max-width:800px){.cards{grid-template-columns:repeat(2,1fr)}.form{grid-template-columns:1fr 1fr}.form button{width:100%}.cost-grid{grid-template-columns:1fr}}
+@media(max-width:560px){.cards{grid-template-columns:1fr 1fr}.form{grid-template-columns:1fr}.toolbar{display:block}.toolbar input{max-width:none;margin-top:10px}.person{display:block}.person-actions{margin-top:10px}}
+</style>
+</head>
+<body>
+<header><div class="container">
+<div class="tag">Organização da empresa</div>
+<h1>⚽ Futebol Protende ABS</h1>
+<p>09/10/2026 • Sexta-feira • Quadra society das 17:00 às 18:30</p>
+</div></header>
+
+<main class="container">
+<div class="cards">
+<div class="card stat"><span>👥 Pessoas adicionadas</span><strong id="peopleCount">0</strong></div>
+<div class="card stat"><span>⚽ Futebol</span><strong id="soccerCount">0</strong></div>
+<div class="card stat"><span>🥩 Churrasco</span><strong id="bbqCount">0</strong></div>
+<div class="card stat"><span>💰 Arrecadado</span><strong id="received">R$ 0,00</strong></div>
+</div>
+
+<section class="card">
+<h2>📍 Evento</h2>
+<div class="info">
+<div class="pill">📅 09/10/2026</div><div class="pill">⏰ 17:00–18:30</div>
+<div class="pill">⚽ Futebol R$ 12,00</div><div class="pill">🥩 Churrasco R$ 20,00</div><div class="pill">⚽🥩 Os dois R$ 32,00</div>
+</div>
+<p class="note">Endereço da quadra: adicionar quando você me passar a rua.</p>
+</section>
+
+<section class="card section">
+<h2>➕ Adicionar pessoa</h2>
+<div class="form">
+<div><label>NOME</label><input id="nameInput" type="text" placeholder="Ex.: João"></div>
+<div><label>VAI PARTICIPAR DE</label>
+<select id="participation">
+<option value="both">⚽ Futebol + 🥩 Churrasco — R$ 32</option>
+<option value="soccer">⚽ Só futebol — R$ 12</option>
+<option value="bbq">🥩 Só churrasco — R$ 20</option>
+</select></div>
+<div><label>PIX</label><select id="pixInput"><option value="no">⏳ Pendente</option><option value="yes">✅ Recebido</option></select></div>
+<button class="primary" id="addButton" type="button">Adicionar pessoa</button>
+</div>
+<p class="note">Depois de clicar em “Adicionar pessoa”, ela aparece imediatamente na lista abaixo e a quantidade de pessoas aumenta.</p>
+</section>
+
+<section class="card section">
+<div class="toolbar"><h2 style="margin:0">📋 Pessoas adicionadas</h2><input id="searchInput" type="text" placeholder="🔎 Procurar nome"></div>
+<div id="peopleList" class="list"></div>
+</section>
+
+<section class="card section">
+<h2>💵 Financeiro</h2>
+<div class="cost-grid">
+<div class="cost"><span>🥩 Custo da carne</span><strong>R$ 600,00</strong></div>
+<div class="cost"><span>🏟️ Aluguel da quadra</span><strong>R$ 350,00</strong></div>
+<div class="cost"><span>📦 Custo total do evento</span><strong>R$ 950,00</strong></div>
+</div>
+<div class="info" style="margin-top:14px">
+<div class="pill">💰 Total previsto a receber: <b id="expected">R$ 0,00</b></div>
+<div class="pill">✅ Pix recebido: <b id="received2">R$ 0,00</b></div>
+<div class="pill">⏳ Falta receber: <b id="missing">R$ 0,00</b></div>
+<div class="pill">📊 Saldo após custos: <b id="balance">R$ -950,00</b></div>
+</div>
+</section>
+</main>
+
+<script>
+(function(){
+const STORAGE_KEY="protende_abs_futebol_v2";
+let people=[];
+try{people=JSON.parse(localStorage.getItem(STORAGE_KEY)||"[]");if(!Array.isArray(people))people=[]}catch(e){people=[]}
+
+const $=id=>document.getElementById(id);
+const money=n=>Number(n).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const price=p=>p.type==="both"?32:p.type==="soccer"?12:20;
+const escapeHTML=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
+
+function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(people));render();}
+
+function addPerson(){
+ const name=$("nameInput").value.trim();
+ if(!name){alert("Digite o nome da pessoa.");$("nameInput").focus();return;}
+ const type=$("participation").value;
+ const pix=$("pixInput").value==="yes";
+ people.push({id:Date.now()+Math.random(),name,type,pix});
+ save();
+ $("nameInput").value="";
+ $("pixInput").value="no";
+ $("nameInput").focus();
+}
+
+function togglePix(id){
+ const p=people.find(x=>x.id==id);if(!p)return;
+ p.pix=!p.pix;save();
+}
+
+function removePerson(id){
+ const p=people.find(x=>x.id==id);if(!p)return;
+ if(confirm("Excluir "+p.name+" da lista?")){people=people.filter(x=>x.id!=id);save();}
+}
+
+function editPerson(id){
+ const p=people.find(x=>x.id==id);if(!p)return;
+ const newName=prompt("Nome:",p.name);
+ if(newName&&newName.trim()){p.name=newName.trim();save();}
+}
+
+function render(){
+ const q=$("searchInput").value.trim().toLowerCase();
+ const list=people.filter(p=>p.name.toLowerCase().includes(q));
+ if(!list.length){
+   $("peopleList").innerHTML='<div class="empty">'+(people.length?'Nenhuma pessoa corresponde à pesquisa.':'Nenhuma pessoa adicionada ainda. Use o botão “Adicionar pessoa” acima.')+'</div>';
+ }else{
+   $("peopleList").innerHTML=list.map(p=>{
+    const soccer=p.type!=="bbq", bbq=p.type!=="soccer";
+    const participation=p.type==="both"?"Futebol + Churrasco":p.type==="soccer"?"Só futebol":"Só churrasco";
+    return `<div class="person">
+      <div class="person-main">
+        <div class="person-name">${escapeHTML(p.name)}</div>
+        <div class="person-detail">${participation} • ${money(price(p))}</div>
+        <div style="margin-top:7px"><span class="status ${p.pix?'ok':'pending'}">${p.pix?'🟢 Pix recebido — Confirmado':'🟡 Pix pendente — Aguardando pagamento'}</span></div>
+      </div>
+      <div class="person-actions">
+        <button class="secondary" type="button" onclick="window.togglePix(${p.id})">${p.pix?'Marcar Pix pendente':'Marcar Pix recebido'}</button>
+        <button class="secondary" type="button" onclick="window.editPerson(${p.id})">Editar</button>
+        <button class="danger" type="button" onclick="window.removePerson(${p.id})">Excluir</button>
+      </div>
+    </div>`;
+   }).join("");
+ }
+ const total=people.reduce((s,p)=>s+price(p),0);
+ const rec=people.filter(p=>p.pix).reduce((s,p)=>s+price(p),0);
+ $("peopleCount").textContent=people.length;
+ $("soccerCount").textContent=people.filter(p=>p.type!=="bbq").length;
+ $("bbqCount").textContent=people.filter(p=>p.type!=="soccer").length;
+ $("received").textContent=money(rec);
+ $("expected").textContent=money(total);
+ $("received2").textContent=money(rec);
+ $("missing").textContent=money(total-rec);
+ $("balance").textContent=money(rec-950);
+}
+
+window.togglePix=togglePix;window.removePerson=removePerson;window.editPerson=editPerson;
+$("addButton").addEventListener("click",addPerson);
+$("nameInput").addEventListener("keydown",e=>{if(e.key==="Enter")addPerson()});
+$("searchInput").addEventListener("input",render);
+render();
+})();
+</script>
+</body>
+</html>
